@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Search engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12">
+        <form class="form-inline" action="/lda" method="get">
+            <input type="text" class="form-control" name="query"/>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr/>
+    </div>
+    <div class="col-md-12">
+        {% for article in articles %}
+            <h4>{{ article['title'] }}</h4>
+            <p>{{ article['similarity'] }}</p>
+            <p>{{ article['topics'] }}</p>
+            <p>{{ article['body']|safe }}</p>
+            <hr/>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
